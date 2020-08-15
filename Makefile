@@ -17,8 +17,8 @@ status:
 	$(call vagrant_func,VAGRANT STATUS,status)
 
 clean:
-	$(call vagrant_func,VAGRANT CLEAN,clean)
-	rm -rf 
+	$(call vagrant_func,VAGRANT CLEAN,destroy)
+	rm -rf .vagrant
 
 # VAGRANT FUNCTION
 # 	$(1): Header

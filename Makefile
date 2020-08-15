@@ -11,7 +11,7 @@ up:
 	$(call vagrant_func,VAGRANT UP,up)
 
 down:
-	$(call vagrant_func,VAGRANT DOWN,down)
+	$(call vagrant_func,VAGRANT DOWN,halt)
 
 status:
 	$(call vagrant_func,VAGRANT STATUS,status)

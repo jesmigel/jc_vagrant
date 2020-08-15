@@ -1,4 +1,5 @@
 # jc_vagrant
+[![Travis](https://img.shields.io/travis/jesmigel/jc_vagrant.svg)](https://travis-ci.org/jesmigel/jc_vagrant)
 Boilerplate repository for virtual machine deployment
 
 # REQUIREMENTS

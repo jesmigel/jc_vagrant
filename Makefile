@@ -17,7 +17,7 @@ status:
 	$(call vagrant_func,VAGRANT STATUS,status)
 
 clean:
-	$(call vagrant_func,VAGRANT CLEAN,destroy)
+	$(call vagrant_func,VAGRANT CLEAN,destroy,--force)
 	rm -rf .vagrant
 
 # VAGRANT FUNCTION

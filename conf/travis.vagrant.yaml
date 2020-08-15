@@ -1,0 +1,49 @@
+# GLOBAL VAGRANT SETTINGS
+global:
+  api_version: 2
+  provider: libvirt
+  plugins: []
+
+nodes:  
+  # KUBERNETES
+  cluster:
+    address:
+      - network: 10.8.8
+        host: 100
+    cpu: 1
+    bootstrap: |
+      # SWAP off
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+      swapoff -a
+    disks: {}
+    gui: false
+    instances: 3
+    memory: 1536
+    mounts: []
+    node_prefix: cluster
+    os: debian/buster64
+
+  # PROXY
+  proxy:
+    address:
+      - network: 10.8.8
+        host: 20
+      - network: 10.8.9
+        host: 20
+    cpu: 1
+    bootstrap: |
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+    disks: {}
+    gui: false
+    instances: 1
+    memory: 256
+    mounts: []
+    network: 10
+    node_prefix: proxy
+    os: debian/buster64

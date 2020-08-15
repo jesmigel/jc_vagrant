@@ -1,0 +1,54 @@
+# GLOBAL VAGRANT SETTINGS
+global:
+  api_version: 2
+  provider: virtualbox
+  plugins:
+    - vagrant-disksize
+
+nodes:  
+  # CLUSTER
+  cluster:
+    address:
+      - network: 10.8.1
+        host: 100
+    cpu: 4
+    bootstrap: |
+      # SWAP off
+      swapoff -a
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+    disks:
+      instances: 1
+      size: 60
+    gui: false
+    instances: 3
+    memory: 256
+    mounts: []
+    node_prefix: cluster-node
+    os: ubuntu/bionic64
+
+  # PROXY
+  proxy:
+    address:
+      - network: 10.8.41
+        host: 10
+      - network: 10.8.40
+        host: 10
+    cpu: 1
+    bootstrap: |
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+    disks: {}
+    gui: false
+    instances: 1
+    memory: 512
+    mounts:
+      - host: ./data/
+        guest: /mnt
+    network: 10
+    node_prefix: local
+    os: ubuntu/bionic64

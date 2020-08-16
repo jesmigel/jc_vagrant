@@ -1,5 +1,5 @@
 # jc_vagrant
-[![Travis](https://img.shields.io/travis/jesmigel/jc_vagrant.svg)](https://travis-ci.org/jesmigel/jc_vagrant)
+[![Travis](https://img.shields.io/travis/jesmigel/jc_vagrant.svg)](https://travis-ci.org/jesmigel/jc_vagrant) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Motivation
 Boilerplate repository for virtual machine deployment

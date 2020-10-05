@@ -1,0 +1,36 @@
+# GLOBAL VAGRANT SETTINGS
+global:
+  api_version: 2
+  provider: virtualbox
+  plugins: []
+
+nodes:  
+  # OPENSTACK
+  openstack:
+    address: 
+      - network: 10.8.42
+        host: 10
+    cpu: 8
+    bootstrap: |
+      # SWAP off
+      swapoff -a
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Make
+      apt-get install -y make git
+      # Prepare platform for stack user
+      make -f /mnt/jc_openstack/devstack.Makefile prereq
+      sudo -u stack make -f /mnt/jc_openstack/devstack.Makefile devstack
+      # Copy Config
+      cp /mnt/jc_openstack/local.conf /opt/stack/devstack/
+      # Execute devstack
+      sudo -u stack /mnt/jc_openstack/devstack.Makefile install
+    disks: {}
+    gui: false
+    instances: 1
+    memory: 16384
+    mounts: 
+      - host: ./data/installers
+        guest: /mnt
+    node_prefix: openstack
+    os: ubuntu/bionic64

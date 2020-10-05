@@ -1,0 +1,47 @@
+# GLOBAL VAGRANT SETTINGS
+global:
+  api_version: 2
+  provider: virtualbox
+  plugins:
+    - vagrant-disksize
+
+nodes:  
+  # proxy
+  proxy:
+    address: []
+    cpu: 2
+    bootstrap: |
+      # SWAP off
+      swapoff -a
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+      apt-get install -y docker.io docker-compose
+      usermod -aG docker vagrant
+    disks: {}
+    gui: false
+    instances: 1
+    memory: 512
+    mounts: []
+    node_prefix: proxy-node
+    os: ubuntu/bionic64
+
+  # cluster
+  cluster:
+    address: []
+    cpu: 1
+    bootstrap: |
+      # SWAP off
+      swapoff -a
+      # Set Timezone
+      timedatectl set-timezone Australia/Melbourne
+      # Prepare package manager
+      apt-get update
+    disks: {}
+    gui: false
+    instances: 2
+    memory: 256
+    mounts: []
+    node_prefix: cluster-node
+    os: ubuntu/bionic64

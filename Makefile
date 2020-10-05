@@ -2,7 +2,7 @@
 
 include makefile.env
 
-_ENV=sample
+_ENV=openstack
 
 validate:
 	$(call vagrant_func,VAGRANT VALIDATE,validate)
@@ -13,12 +13,24 @@ up:
 down:
 	$(call vagrant_func,VAGRANT DOWN,halt)
 
+reload: 
+	$(call vagrant_func,VAGRANT RELOAD,reload)
+
+build:
+	$(call vagrant_func,VAGRANT PROVISION,provision)
+
 status:
 	$(call vagrant_func,VAGRANT STATUS,status)
 
 clean:
 	$(call vagrant_func,VAGRANT CLEAN,destroy,--force)
 	rm -rf .vagrant
+
+login:
+	$(call vagrant_func,VAGRANT CLEAN,ssh)
+
+test:
+	$(call vagrant_func,VAGRANT TEST,ssh proxy-node-1)
 
 # VAGRANT FUNCTION
 # 	$(1): Header
